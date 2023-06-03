@@ -86,7 +86,7 @@ def find_in_matrix(value, input_matrix):
     return [-1, -1]
 
 
-def string_to_magic_square(string, magic_square):
+def encypt(string, magic_square):
     n = len(magic_square)
     string = string + " " * (n * n - len(string))
     res = [[" " for x in range(n)] for y in range(n)]
@@ -96,7 +96,7 @@ def string_to_magic_square(string, magic_square):
     return res
 
 
-def magic_square_to_string(crypt_square, magic_square):
+def decrypt(crypt_square, magic_square):
     string = ""
     for i in range(len(crypt_square)**2):
         i_pos, j_pos = find_in_matrix(i + 1, crypt_square)
@@ -116,8 +116,8 @@ else:
     magic = generate_magic_squares()  # Generation of the magic square obtained above dimensionally
     print("\nSelected Magic Square:")
     print(tabulate(magic, tablefmt="fancy_grid"))
-    matrix = string_to_magic_square(input_string, magic)  # Encrypting strings
+    matrix = encypt(input_string, magic)  # Encrypting strings
     print("\nEncrypted string in matrix:\n", matrix)  # Output of an encrypted string, which now has the form of a two-dimensional
     print(tabulate(matrix, tablefmt="fancy_grid"))
-    string = magic_square_to_string(magic, matrix)  # Inverse conversion to string
+    string = decrypt(magic, matrix)  # Inverse conversion to string
     print("\nDecrypted string:\n", string)  # Output of the original strings
